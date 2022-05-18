@@ -1,0 +1,6 @@
+requests:
+  url: http://localhost:5000/users/add
+  method: POST
+  headers: {}
+  body:
+    username: trollz

@@ -1,0 +1,4 @@
+requests:
+  url: https://ply-ct.org/movies
+  method: GET
+  headers: {}

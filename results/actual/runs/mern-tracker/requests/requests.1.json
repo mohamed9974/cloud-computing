@@ -1,0 +1,39 @@
+[
+  {
+    "name": "requests",
+    "test": "requests",
+    "type": "request",
+    "end": "2022-05-18T07:12:19.041Z",
+    "result": {
+      "status": "Submitted",
+      "message": "Request 'requests' SUBMITTED"
+    },
+    "request": {
+      "name": "requests",
+      "type": "request",
+      "url": "http://localhost:5000/users/add",
+      "method": "POST",
+      "headers": {},
+      "body": "{\n  \"username\": \"trollz\"\n}",
+      "submitted": "2022-05-18T07:12:18.997Z"
+    },
+    "response": {
+      "runId": "5cd0a1f5f8af",
+      "status": {
+        "code": 400,
+        "message": "Bad Request"
+      },
+      "headers": {
+        "access-control-allow-origin": "*",
+        "connection": "close",
+        "content-length": "64",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 18 May 2022 07:12:19 GMT",
+        "etag": "W/\"40-UYcSnrWAzr8WGWagtX5EWKT7DXs\"",
+        "x-powered-by": "Express"
+      },
+      "body": "\"Error: ValidationError: username: Path `username` is required.\"",
+      "time": 19
+    }
+  }
+]

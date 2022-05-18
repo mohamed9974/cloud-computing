@@ -1,0 +1,22 @@
+requests:  # 5/18/2022, 10:12:18:997
+  request:
+    url: http://localhost:5000/users/add
+    method: POST
+    headers: {}
+    body: |-
+      {
+        "username": "trollz"
+      }
+  response:  # 19 ms
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      access-control-allow-origin: '*'
+      connection: close
+      content-length: '64'
+      content-type: application/json; charset=utf-8
+      date: Wed, 18 May 2022 07:12:19 GMT
+      etag: W/"40-UYcSnrWAzr8WGWagtX5EWKT7DXs"
+      x-powered-by: Express
+    body: '"Error: ValidationError: username: Path `username` is required."'
