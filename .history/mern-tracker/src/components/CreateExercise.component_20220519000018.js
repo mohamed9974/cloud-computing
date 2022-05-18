@@ -22,7 +22,7 @@ export default class CreateExercise extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/users')
+        axios.get('http://localhost:5000/users/')
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
@@ -95,7 +95,7 @@ export default class CreateExercise extends Component {
                             value={this.state.username}
                             onChange={this.onChangeUsername}
                         >
-                            {(this.state.users||[]).map(function (user) {
+                            {this.state.users.map(function (user) {
                                 return (
                                     <option key={user} value={user}>
                                         {user}

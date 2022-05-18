@@ -17,6 +17,7 @@ export default class CreateUser extends Component {
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
+            users: response.data.map(user => user.username),
             username: response.data[0].username
           })
         }
@@ -24,8 +25,8 @@ export default class CreateUser extends Component {
       .catch((error) => {
         console.log(error);
       })
-
   }
+
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
@@ -69,7 +70,7 @@ export default class CreateUser extends Component {
         </form>
         <h3>Users</h3>
         <ul>
-          {(this.state.users||[]).map(user => (
+          {this.state.users.map(user => (
             <li>{user}</li>
           ))}
         </ul>

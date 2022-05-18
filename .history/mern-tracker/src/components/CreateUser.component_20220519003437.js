@@ -13,19 +13,7 @@ export default class CreateUser extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/users/add')
-      .then(response => {
-        if (response.data.length > 0) {
-          this.setState({
-            username: response.data[0].username
-          })
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
-  }
+    
   onChangeUsername(e) {
     this.setState({
       username: e.target.value

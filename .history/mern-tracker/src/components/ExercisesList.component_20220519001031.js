@@ -4,15 +4,14 @@ import axios from "axios";
 
 
 const Exercise = (props) => {
-    const dateSubstring = (props.exercise.date ||'').substring(0, 10);
     return (
         <tr>
             <td>{props.exercise.username}</td>
             <td>{props.exercise.description}</td>
             <td>{props.exercise.duration}</td>
-            <td>{dateSubstring}</td>
+            <td>{props.exercise.date.substring(0, 10)}</td>
             <td>
-                <Link to={"/edit/" + props.exercise._id}>Edit</Link> | <button href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>Delete</button>
+                <Link to={"/edit/" + props.exercise._id}>Edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>Delete</a>
             </td>"
         </tr>
     );

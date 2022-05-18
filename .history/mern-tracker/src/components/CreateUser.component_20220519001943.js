@@ -13,19 +13,13 @@ export default class CreateUser extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/users/add')
-      .then(response => {
-        if (response.data.length > 0) {
-          this.setState({
-            username: response.data[0].username
-          })
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
+    fetch('http://localhost:5000/users/')
+      .then(response => response.json())
+      .then(users => {
+        this.setState({ users: users.map(user => user.username) });
+      });
   }
+
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
@@ -69,7 +63,7 @@ export default class CreateUser extends Component {
         </form>
         <h3>Users</h3>
         <ul>
-          {(this.state.users||[]).map(user => (
+          {this.state.users.map(user => (
             <li>{user}</li>
           ))}
         </ul>

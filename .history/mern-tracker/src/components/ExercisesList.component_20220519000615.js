@@ -1,22 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React,{Component} from "react";
+import {Link} from "react-router-dom";
 import axios from "axios";
-
-
-const Exercise = (props) => {
-    const dateSubstring = (props.exercise.date ||'').substring(0, 10);
-    return (
-        <tr>
-            <td>{props.exercise.username}</td>
-            <td>{props.exercise.description}</td>
-            <td>{props.exercise.duration}</td>
-            <td>{dateSubstring}</td>
-            <td>
-                <Link to={"/edit/" + props.exercise._id}>Edit</Link> | <button href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>Delete</button>
-            </td>"
-        </tr>
-    );
-}
+// import Map from "./Map";
 
 export default class ExerciseList extends Component {
     constructor(props) {
@@ -28,7 +13,7 @@ export default class ExerciseList extends Component {
             exercises: []
         }
     }
-
+    
     componentDidMount() {
         axios.get('http://localhost:5000/exercises/')
             .then(response => {
@@ -43,25 +28,10 @@ export default class ExerciseList extends Component {
                 console.log(error);
             })
     }
-
-    deleteExercise(id) {
-        axios.delete('http://localhost:5000/exercises/' + id)
-            .then(res => console.log(res.data));
-
-        this.setState({
-            exercises: this.state.exercises.filter(el => el._id !== id)
-        })
-    }
-
-    exerciseList() {
-        return this.state.exercises.map(currentexercise => {
-            return <Exercise exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id} />;
-        })
-    }
     render() {
         return (
             <div>
-                <h3>Logged Exercises</h3>
+                <h3>Exercise List</h3>
                 <table className="table">
                     <thead className="thead-light">
                         <tr>
@@ -73,10 +43,21 @@ export default class ExerciseList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.exerciseList()}
+                        {this.props.exercises.map(exercise => (
+                            <tr key={exercise._id}>
+                                <td>{exercise.username}</td>
+                                <td>{exercise.description}</td>
+                                <td>{exercise.duration}</td>
+                                <td>{exercise.date.substring(0,10)}</td>
+                                <td>
+                                    <Link to={"/edit/"+exercise._id} className="btn btn-primary">Edit</Link>
+                                    <Link to={"/delete/"+exercise._id} className="btn btn-danger">Delete</Link>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
-        )
+        );
     }
 }
