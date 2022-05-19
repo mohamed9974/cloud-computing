@@ -2,17 +2,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const Exercise = (props) => (
+const Exercise = (props) => {
+    const dateSubstring = (props.exercise.date ||'').substring(0, 10);
         <tr>
             <td>{props.exercise.username}</td>
             <td>{props.exercise.description}</td>
             <td>{props.exercise.duration}</td>
-            <td>{(props.exercise.date ||'').substring(0, 10)}</td>
+            <td>{dateSubstring}</td>
             <td>
                 <button><Link to={"/edit/" + props.exercise._id}>Edit</Link> </button>| <button href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>Delete</button>
             </td>"
         </tr>
     );
+}
 
 export default class ExerciseList extends Component {
     constructor(props) {
@@ -30,7 +32,8 @@ export default class ExerciseList extends Component {
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
-                        exercises: response.data
+                        exercises: response.data.map(exercise => exercise.username),
+                        username: response.data[0].username
                     })
                 }
             })

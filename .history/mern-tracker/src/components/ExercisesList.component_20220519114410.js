@@ -30,7 +30,8 @@ export default class ExerciseList extends Component {
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
-                        exercises: response.data
+                        exercises: response.data.map(exercise => exercise.username),
+                        username: response.data[0].username
                     })
                 }
             })
