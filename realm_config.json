@@ -1,7 +1,8 @@
 {
-    "app_id": "application-0-gmech",
+    "app_id": "booktracker-nmprl",
     "config_version": 20210101,
-    "name": "Application-0",
+    "name": "BookTracker",
     "location": "DE-FF",
-    "deployment_model": "LOCAL"
+    "deployment_model": "LOCAL",
+    "environment": "development"
 }
